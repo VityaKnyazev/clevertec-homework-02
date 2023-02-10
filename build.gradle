@@ -1,0 +1,57 @@
+plugins {
+    id 'java-library'
+    id 'ru.clevertec.knyazev.plugin' version '1.0'
+}
+
+ext {
+	javaVersion = '8'
+	apacheCommonsLangVersion = '3.10'
+		
+	jUnitVersion = '5.9.2'
+}
+
+group = 'ru.clevertec.knyazev'
+version = '1.0'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+java {
+    toolchain {
+    	languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
+    }
+}
+
+jar {
+	archiveBaseName = 'multi-project'
+        
+    from {
+		configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)	
+}
+
+dependencies {
+    implementation "org.apache.commons:commons-lang3:$apacheCommonsLangVersion" 
+        
+    testImplementation "org.junit.jupiter:junit-jupiter:$jUnitVersion"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task 'show' {
+	doFirst {
+	    println('List of configurations representation:')
+    	println(configurations)
+	}	
+}
+
+show.dependsOn(helloTask)

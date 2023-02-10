@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.clevertec.knyazev'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+    	languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
+    }
+}
+
+jar {
+	archiveBaseName = 'api'
+    manifest {
+        attributes(
+                'Main-Class': 'ru.clevertec.knyazev.homework02.App'
+        )
+    }
+    
+    from {
+		configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+dependencies {
+	implementation rootProject
+	implementation project(':core')
+	implementation "org.apache.commons:commons-lang3:$apacheCommonsLangVersion"
+	
+	testImplementation "org.junit.jupiter:junit-jupiter:$jUnitVersion"
+}
