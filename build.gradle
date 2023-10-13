@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    javaVersion = '17'
+
+    jUnitVersion = '5.9.2'
+}
+
+group = 'ru.clevertec.knyazev'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
