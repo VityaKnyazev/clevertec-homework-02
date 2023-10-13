@@ -1,2 +1,5 @@
 rootProject.name = 'homework-02'
 
+include 'core'
+include 'api'
+
