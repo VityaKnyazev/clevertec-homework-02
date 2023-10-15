@@ -1,7 +1,15 @@
 package ru.clevertec.knyazev;
 
 public class Main {
+
+    private static final Utils utils = new Utils();
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        String[] numbers = {"12", "79"};
+
+        System.out.println("Is all positive numbers? " +
+                            utils.isAllPositiveNumbers(numbers));
     }
+
 }

@@ -16,8 +16,27 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation project(':core')
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
     }
+}
+
+jar {
+    archiveBaseName = 'api'
+    manifest {
+        attributes(
+                'Main-Class': 'ru.clevertec.knyazev.Main'
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 }
