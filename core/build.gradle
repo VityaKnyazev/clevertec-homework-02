@@ -27,6 +27,7 @@ dependencies {
 
     implementation "org.slf4j:slf4j-api:$slf4jApiVersion"
     implementation "ch.qos.logback:logback-classic:$logbackVersion"
+    implementation project(path: ':')
 
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$jUnitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$jUnitVersion"

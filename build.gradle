@@ -1,5 +1,8 @@
+import ru.clevertec.knyazev.ReportPlugin
+
 plugins {
     id 'java'
+    id 'report'
 }
 
 ext {
