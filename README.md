@@ -26,7 +26,7 @@
 
 <p>Дополнительно:</p>
 
-![alt text](https://github.com/VityaKnyazev/clevertec-homework-02/tree/feature/multimodule/tag-task.jpg?raw=true)
+![alt text](https://github.com/VityaKnyazev/clevertec-homework-02/blob/feature/multimodule/tag-task.gif?raw=true)
 
 <h2>Что сделано:</h2>
 
