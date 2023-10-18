@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    javaVersion = '17'
+}
+
+group = 'ru.clevertec.knyazev'
+version = '1.0-SNAPSHOT'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':core')
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
+    }
+}
+
+jar {
+    archiveBaseName = 'api'
+    manifest {
+        attributes(
+                'Main-Class': 'ru.clevertec.knyazev.Main'
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
