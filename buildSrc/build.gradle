@@ -1,3 +1,31 @@
 plugins {
     id 'groovy'
 }
+
+ext {
+    javaVersion = '17'
+
+    jgitVersion = '6.7.0.202309050840-r'
+}
+
+group = 'ru.clevertec.knyazev'
+version = '1.0-SNAPSHOT'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation "org.eclipse.jgit:org.eclipse.jgit:$jgitVersion"
+
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of("$javaVersion"))
+    }
+}

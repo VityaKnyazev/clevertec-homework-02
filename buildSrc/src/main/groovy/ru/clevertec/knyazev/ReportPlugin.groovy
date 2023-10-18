@@ -5,7 +5,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.invocation.Gradle
 
-class ReportPlugin implements Plugin<Project>{
+class ReportPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
@@ -14,20 +14,26 @@ class ReportPlugin implements Plugin<Project>{
 
     private void addReportTask(Project project) {
 
-        project.task(description: '', group: 'clevertec', type: DefaultTask, 'report') {
-            println 'This is the report task!'
-            println 'Report task print information about Gradle and project!'
+        project.task(description: 'Print information about Gradle and project', group: 'clevertec', type: DefaultTask, 'report') {
 
-            String projectName = project.displayName
-            String projectPath = project.projectDir
+            doFirst {
+                println 'This is the report task!'
+                println 'Report task print information about Gradle and project!'
+            }
 
-            Gradle gradle = project.gradle
-            String gradleVersion = gradle.gradleVersion
-            File file = gradle.gradleHomeDir
-            String gradlePath = file.absolutePath
+            doLast {
+                String projectName = project.displayName
+                String projectPath = project.projectDir
 
-            println 'Developing Project with name ' + projectName + ' from path ' + projectPath
-            println 'using Gradle version ' + gradleVersion + ' from path ' + gradlePath
+                Gradle gradle = project.gradle
+                String gradleVersion = gradle.gradleVersion
+                File file = gradle.gradleHomeDir
+                String gradlePath = file.absolutePath
+
+                println 'Developing Project with name ' + projectName + ' from path ' + projectPath
+                println 'using Gradle version ' + gradleVersion + ' from path ' + gradlePath
+            }
+
         }
 
     }
